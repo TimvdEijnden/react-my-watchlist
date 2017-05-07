@@ -1,0 +1,14 @@
+.movie-list {
+    .scroll-container {
+        width: calc(100vw-100px);
+        overflow: hidden;
+        margin: 50px;
+        ul {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.movie {
+    img {
+        width: 200px;
+        height: 300px;
+        contain: content;
+        border: 1px #333 solid;
+        margin: 0 5px;
+    }
+
+    h3 {
+        color: #fff;
+        text-align: center;
+    }
+}

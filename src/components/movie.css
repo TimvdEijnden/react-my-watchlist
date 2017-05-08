@@ -1,10 +1,18 @@
-.movie img {
+.movie {
   width: 200px;
-  height: 300px;
-  contain: content;
-  border: 1px #333 solid;
-  margin: 0 5px; }
+  margin: 0 25px; }
+  .movie img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border: 1px #333 solid;
+    box-sizing: border-box; }
+  .movie h3 {
+    color: #fff;
+    text-align: center; }
 
-.movie h3 {
-  color: #fff;
-  text-align: center; }
+.movie:first-of-type {
+  margin-left: 0; }
+
+.movie:last-of-type {
+  margin-right: 0; }

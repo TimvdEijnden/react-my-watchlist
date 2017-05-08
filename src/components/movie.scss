@@ -1,14 +1,27 @@
+@import '../shared';
+
 .movie {
+    width: $poster-width;
+    margin: 0 25px;
+
     img {
-        width: 200px;
-        height: 300px;
-        contain: content;
+        width: $poster-width;
+        height: $poster-height;
+        object-fit: cover;
         border: 1px #333 solid;
-        margin: 0 5px;
+        box-sizing: border-box;
     }
 
     h3 {
         color: #fff;
         text-align: center;
     }
+}
+
+.movie:first-of-type {
+    margin-left: 0;
+}
+
+.movie:last-of-type {
+    margin-right: 0;
 }

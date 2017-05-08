@@ -1,11 +1,20 @@
-.movie-list .scroll-container {
-  width: calc(100vw-100px);
-  overflow: hidden;
+.movie-list {
+  position: relative;
   margin: 50px; }
-
-.movie-list .scroll-container ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  padding: 0;
-  box-sizing: border-box; }
+  .movie-list .scroll-container {
+    width: calc(100vw-100px);
+    overflow: hidden; }
+    .movie-list .scroll-container ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box; }
+  .movie-list .selection-rectangle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 300px;
+    box-shadow: 0px 0px 15px 3px #007dff; }

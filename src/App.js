@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import MovieList from './components/movie-list';
+import Header from './components/header';
 
 class App extends Component {
   render() {
     return (
-      <MovieList></MovieList>
+      <div>
+        <Header title="My IMDB watchlist"/>
+        <MovieList focused={true} attach={window}></MovieList>
+      </div> 
     );
   }
 }

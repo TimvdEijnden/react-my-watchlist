@@ -6,7 +6,8 @@ class MovieList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movies: []
+            movies: [],
+            selectedIndex: 0
         };
         fetch('./movies.json').then(response => {
             if (response.ok) {
@@ -19,7 +20,41 @@ class MovieList extends Component {
         })
     }
 
+    _selectNext() {
+        this.setState({
+            ...this.state,
+            selectedIndex: this.state.selectedIndex + 1
+        });
+    }
+
+    _selectPrevious() {
+        this.setState({
+            ...this.state,
+            selectedIndex: this.state.selectedIndex - 1
+        });
+    }
+
+    componentWillMount() {
+        document.addEventListener("keydown", this._handleKeyDown.bind(this));
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this._handleKeyDown.bind(this));
+    }
+
+    _handleKeyDown(event) {
+        switch (event.key) {
+            case 'ArrowRight':
+                this._selectNext();
+                break;
+            case 'ArrowLeft':
+                this._selectPrevious();
+                break;
+        }
+    }
+
     render() {
+
         const moviesComponents = this
             .state
             .movies
@@ -31,10 +66,13 @@ class MovieList extends Component {
             <div className='movie-list'>
                 {this.state.movies.length
                     ? (
-                        <div className="scroll-container">
-                            <ul>
-                                {moviesComponents}
-                            </ul>
+                        <div>
+                            <div className="scroll-container">
+                                <ul>
+                                    {moviesComponents}
+                                </ul>
+                            </div>
+                            <div className="selection-rectangle"></div>
                         </div>
                     )
                     : (

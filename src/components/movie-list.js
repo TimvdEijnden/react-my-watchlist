@@ -16,7 +16,7 @@ class MovieList extends Component {
                 response
                     .json()
                     .then(json => {
-                        this.setState({movies: json, showDetails: true});
+                        this.setState({movies: json});
                     });
             }
         })

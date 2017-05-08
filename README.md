@@ -2,6 +2,9 @@
 
 Show movies in your IMDB watchlist in a UI with Keyboard-Only Navigation.
 
+## demo
+https://timvdeijnden.github.io/react-my-watchlist
+
 ## setup
 * yarn
 * yarn start

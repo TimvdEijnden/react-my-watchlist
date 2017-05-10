@@ -107,7 +107,7 @@ class MovieList extends Component {
         }
     }
 
-    handleTouchStart(event) {
+    handleTouchMove(event) {
         event.preventDefault();
     }
 
@@ -128,7 +128,7 @@ class MovieList extends Component {
         });
 
         return (
-            <ReactGesture onTouchStart={ this.handleTouchStart.bind(this) }onTap={ this.handleTap.bind(this) } onSwipeLeft={ this._selectPrevious.bind(this) } onSwipeRight={ this._selectNext.bind(this) }>
+            <ReactGesture onTouchMove={ this.handleTouchMove.bind(this) } onTap={ this.handleTap.bind(this) } onSwipeLeft={ this._selectPrevious.bind(this) } onSwipeRight={ this._selectNext.bind(this) }>
                 <div className='movie-list'>
                     {this.state.movies.length
                         ? (

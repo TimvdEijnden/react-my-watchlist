@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Movie from './movie';
 import MovieDetails from './movie-details';
+import ReactGesture from 'react-gesture';
 import './movie-list.css';
 
 class MovieList extends Component {
@@ -22,8 +23,8 @@ class MovieList extends Component {
         })
     }
 
-    _selectNext() {
-        if(this.state.showDetails) return;
+    _selectNext(event = null) {
+        if(this.state.showDetails || this.transitioning) return;
         
         const isLast = this.state.selectedIndex === this.state.movies.length - 1;
         this.setState({
@@ -43,8 +44,8 @@ class MovieList extends Component {
         }
     }
 
-    _selectPrevious() {
-        if(this.state.showDetails) return;
+    _selectPrevious(event = null) {
+        if(this.state.showDetails || this.transitioning) return;
         
         const isFirst = this.state.selectedIndex === 0;
         this.setState({
@@ -66,6 +67,12 @@ class MovieList extends Component {
     _translateX(elem, x, transition) {
         elem.style.transition = transition ? 'transform 0.2s' : '';
         elem.style.transform = 'translate3d(' + x + 'px, 0, 0)';
+        if(transition){ 
+            this.transitioning = true;
+            elem.addEventListener('transitionend', () => {
+                this.transitioning = false;
+            })
+        }
     }
 
     _toggleDetails(){
@@ -100,6 +107,14 @@ class MovieList extends Component {
         }
     }
 
+    handleTouchStart(event) {
+        event.preventDefault();
+    }
+
+    handleTap() {
+        this._toggleDetails();
+    } 
+
     render() {
 
         // default set
@@ -113,25 +128,28 @@ class MovieList extends Component {
         });
 
         return (
-            <div className='movie-list'>
-                {this.state.movies.length
-                    ? (
-                        <div>
-                            <div className="scroll-container">
-                                <ul ref={(input) => { this.movieContainer = input; }}>
-                                    {moviesComponents.concat(duplicateMoviesComponents)}
-                                </ul>
-                            </div>
-                            <div className="selection-rectangle"></div>
-                        </div>
+            <ReactGesture onTouchStart={ this.handleTouchStart.bind(this) }onTap={ this.handleTap.bind(this) } onSwipeLeft={ this._selectPrevious.bind(this) } onSwipeRight={ this._selectNext.bind(this) }>
+                <div className='movie-list'>
+                    {this.state.movies.length
+                        ? (
+                            <div>                           
+                                <div className="scroll-container">
+                                    <ul ref={(input) => { this.movieContainer = input; }}>
+                                        {moviesComponents.concat(duplicateMoviesComponents)}
+                                    </ul>
+                                </div>
+                                <div className="selection-rectangle"></div>      
+                            </div>                      
                     )
                     : (
                         <p>loading movies...</p>
                     )}
                     { this.state.showDetails && 
                         <MovieDetails data={this.state.movies[this.state.selectedIndex]} />
+
                     }
-            </div>
+                </div> 
+            </ReactGesture>
         );
     }
 }

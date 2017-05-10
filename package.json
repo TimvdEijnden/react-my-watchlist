@@ -6,7 +6,8 @@
   "dependencies": {
     "imdb-api": "^2.2.2",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-gesture": "^0.0.5"
   },
   "devDependencies": {
     "node-sass": "^4.5.2",
